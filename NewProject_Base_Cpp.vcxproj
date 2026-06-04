@@ -24,6 +24,7 @@
     <ProjectGuid>{ff244a93-5aa6-4b2b-bd16-03fe688f442a}</ProjectGuid>
     <RootNamespace>NewProjectBaseCpp</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>BattleShip</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -123,10 +124,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Map.cpp" />
-    <ClCompile Include="NewProject_Base_Cpp.cpp" />
-    <ClCompile Include="Position.cpp" />
-    <ClCompile Include="Ship.cpp" />
+    <ClCompile Include="BattleShip.cpp" />
+    <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Map.h" />
