@@ -1,11 +1,123 @@
-﻿// NewProject_Base_Cpp.cpp : 이 파일에는 'main' 함수가 포함됩니다. 거기서 프로그램 실행이 시작되고 종료됩니다.
+// NewProject_Base_Cpp.cpp : 이 파일에는 'main' 함수가 포함됩니다. 거기서 프로그램 실행이 시작되고 종료됩니다.
 //
 
 #include <iostream>
+#include "Map.h"
+#include "Position.h"
+#include "Ship.h"
+#include "Utils.h"
+
+
+Map* CreateMap()
+{
+    Map* LeMap = new Map(10, 10);
+    int* arr = new int[LeMap->Width * (LeMap->Height)];
+    for (int i = 0; i < LeMap->Height; i++)
+    {
+        for (int j = 0; j < LeMap->Width; j++)
+        {
+            arr[i * LeMap->Width + j] = 0;
+        }
+    }
+    LeMap->MapStructure = arr;
+    return LeMap;
+}
+
+void SpawnShips(Map& map)
+{
+    srand(time(0));
+    Ship* EnemyFleet[4] = { new Ship(DD),  new Ship(CC) , new Ship(BB) , new Ship(CV)};
+   
+    for (Ship* eachShip : EnemyFleet)
+    {
+        //printf("%d ", eachShip->GetSize());
+        
+        if (eachShip->GetHorizontal())
+        {
+            //int randomY = GetRandomRange(0, map.Height-1);
+            //int randomX = GetRandomRange(0, map.Width-1);
+
+            bool hasSucceded = false;
+            Position randomPos = Position(rand() % (map.Width - 1), rand() % (map.Height - 1));
+            Position newPos = randomPos;
+            Position tempPos = newPos;
+            //생성 가능 체크
+
+            while(hasSucceded = true)
+            {
+                for (int i = 0; i < eachShip->GetSize(); i++)
+                {
+                    if (map.MapStructure[newPos.Y * map.Width + newPos.X+i] == 0 && map.Width > newPos.X + i)
+                    {
+                        hasSucceded = true;
+                    }
+                    else
+                    {
+                        hasSucceded = false;
+                        newPos = Position(rand() % (map.Width - 1), rand() % (map.Height - 1));
+                        tempPos = newPos;
+                    }        
+                }
+                break;
+            }
+            for (int j = 0; j < eachShip->GetSize(); j++)
+            {   
+                eachShip->SetPos(tempPos, j);
+                tempPos = tempPos + Position(1, 0);
+            }
+
+            for (int l = 0; l < eachShip->GetSize(); l++)
+            {
+                Position ShipPartPos = eachShip->GetPos()[l];
+                map.MapStructure[ShipPartPos.Y * map.Width + ShipPartPos.X] = eachShip->GetSize();
+            }
+
+
+        }
+        else
+        {
+        //세로 생성
+
+        }
+        //map.MapStructure
+    }
+    //printf("\n");
+   // printf("%d ", rand() % (map.Width - 1));
+
+}
+
+void PrintWorld(const Map* Maze)
+{
+    for (int i = 0; i < (Maze->Height); i++)
+    {
+        for (int j = 0; j < (Maze->Width); j++)
+        {
+            if (Maze->MapStructure[i * Maze->Width + j] == 0)
+            {
+                printf(". ");
+            }
+            else
+            {
+                printf("%d ", Maze->MapStructure[i * Maze->Width + j]);
+            }
+        }
+        printf("\n");
+    }
+}
 
 int main()
 {
-    std::cout << "Hello World!\n";
+    Map* Ocean = CreateMap();
+    /*for (int i = 0; i <100; i++)
+    {
+        printf("%d ", (Ocean->MapStructure)[i]);
+    }*/
+    SpawnShips(*Ocean);
+    PrintWorld(Ocean);
+    delete Ocean->MapStructure;
+    Ocean->MapStructure = nullptr;
+    delete Ocean;
+    Ocean = nullptr;
 }
 
 // 프로그램 실행: <Ctrl+F5> 또는 [디버그] > [디버깅하지 않고 시작] 메뉴
