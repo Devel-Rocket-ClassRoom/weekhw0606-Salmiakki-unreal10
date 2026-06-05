@@ -1,6 +1,5 @@
 #pragma once
 #include <string>
-#include "Ship.h"
 #include "Position.h"
 
 enum ShipType

@@ -1,6 +1,3 @@
-// NewProject_Base_Cpp.cpp : 이 파일에는 'main' 함수가 포함됩니다. 거기서 프로그램 실행이 시작되고 종료됩니다.
-//
-
 #include <iostream>
 #include <string>
 #include <thread>
@@ -9,6 +6,7 @@
 #include "Position.h"
 #include "Ship.h"
 #include "Utils.h"
+#include "BattleShip.h"
 using namespace std;
 
 Map* CreateMap()
@@ -135,7 +133,7 @@ void PrintWorld(const Map* Maze, bool reveal=false)
 
 int main()
 {
-    srand(time(0));
+    srand((unsigned int)time(0));
 	int AvilableAttacks = 30;
 	int RemainingShips = ShipTypeCount;
     Map* Ocean = CreateMap();
