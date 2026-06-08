@@ -125,7 +125,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="BattleShip.cpp" />
-    <ClCompile Include="LinkedList.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BattleShip.h" />
@@ -134,7 +133,6 @@
     <ClInclude Include="Ship.h" />
     <ClInclude Include="Utils.cpp" />
     <ClInclude Include="Utils.h" />
-    <ClInclude Include="LinkedList.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

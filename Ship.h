@@ -28,6 +28,7 @@ public:
 		Horizontal = ishorizontal;
 		Pos = new Position[Size];
 	}
+
 	inline bool GetHorizontal()
 	{
 		return Horizontal;
@@ -62,3 +63,13 @@ public:
 		return isDead;
 	}
 };
+
+Ship** CreateFleet()            //함대 동적할당        EnemyFleet 메모리 해제 필요
+{
+	Ship** EnemyFleet = new Ship * [ShipTypeCount];
+	for (int i = 0; i < ShipTypeCount; i++)
+	{
+		EnemyFleet[i] = new Ship((ShipType)(DD+i), rand() % 2);
+	}
+	return EnemyFleet;
+}
