@@ -1,3 +1,4 @@
+#pragma once
 #include <iostream>
 #include <string>
 #include <thread>
@@ -173,11 +174,11 @@ void BattleShip::ClearData()
     {
         for (int i = 0; i < ShipTypeCount; i++)
         {
-            delete[] EnemyFleet[i]->GetPos();
-            delete[] EnemyFleet[i];
+            
+            delete EnemyFleet[i];
             EnemyFleet[i] = nullptr;
         }
-        delete EnemyFleet;
+        delete[] EnemyFleet;
         EnemyFleet = nullptr;
     }
     if (Ocean)
@@ -187,11 +188,4 @@ void BattleShip::ClearData()
     }
 }
 
-int main()
-{
-    srand((unsigned int)time(0));
-    BattleShip BattleShipGame;
-    BattleShipGame.ClearData();
-    int i = 0;
-}
 

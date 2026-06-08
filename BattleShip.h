@@ -1,9 +1,7 @@
 #pragma once
 #include "Map.h"
 #include "Ship.h"
-Map* CreateMap();
 
-Ship** CreateFleet();
 using namespace std;
 
 class BattleShip

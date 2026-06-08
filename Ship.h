@@ -10,7 +10,7 @@ enum ShipType
 	CV = 5,
 	ShipTypeCount = 4
 };
-std::string ShipName[] = { "구축함", "순양함", "전함", "항공모함" };
+static std::string ShipName[] = { "구축함", "순양함", "전함", "항공모함" };
 
 
 class Ship
@@ -27,6 +27,13 @@ public:
 		HP = (int)Size;
 		Horizontal = ishorizontal;
 		Pos = new Position[Size];
+	}
+	~Ship()
+	{
+		if (Pos!=nullptr)
+		{
+			delete[] Pos;
+		}
 	}
 
 	inline bool GetHorizontal()
@@ -64,7 +71,7 @@ public:
 	}
 };
 
-Ship** CreateFleet()            //함대 동적할당        EnemyFleet 메모리 해제 필요
+static Ship** CreateFleet()            //함대 동적할당        EnemyFleet 메모리 해제 필요
 {
 	Ship** EnemyFleet = new Ship * [ShipTypeCount];
 	for (int i = 0; i < ShipTypeCount; i++)
